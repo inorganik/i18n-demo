@@ -14,14 +14,14 @@ export class AppComponent {
   locales = ['fr', 'en-GB'];
 
   constructor(@Inject(LOCALE_ID) protected localeId: string) {
-    console.log('locale:', this.localeId); // "en-US"
+    console.log('locale:', this.localeId);
 
     this.locales.unshift(this.localeId);
     this.locale = this.localeId;
 
   }
 
-  updateLocal(event) {
+  updateLocale(event) {
     this.locale = event.target.value;
   }
 }
