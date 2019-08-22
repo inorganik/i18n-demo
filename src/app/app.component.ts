@@ -1,4 +1,4 @@
-import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
@@ -10,26 +10,39 @@ export class AppComponent {
   title = 'i18n demo';
   currentDate = new Date();
 
-
+  // the user's locale
+  detectedLocale = '';
   // the locales the app supports
   locales = ['en-US', 'en-GB', 'fr'];
+  // the current locale
   locale = this.locales[0];
 
   constructor(
-    @Inject(LOCALE_ID) protected localeId: string,
     private translocoService: TranslocoService
   ) {
-    console.log('locale ID:', this.localeId);
+    this.detectedLocale = this.getUsersLocale('en-US');
 
     // check if the user's preferred language is supported and if so, use it.
-    if (this.localeId.match(/^en|^fr/)) {
-      this.updateLocale(this.localeId);
+    if (this.detectedLocale.match(/^en|^fr/)) {
+      this.updateLocale(this.detectedLocale);
     }
+  }
+
+  getUsersLocale(defaultLang: string): string {
+    if (typeof window === 'undefined' || typeof window.navigator === 'undefined') {
+      return defaultLang;
+    }
+    const nav = window.navigator as any;
+    let lang = nav.languages ? nav.languages[0] : null;
+    lang = lang || nav.language || nav.browserLanguage || nav.userLanguage;
+    return lang;
   }
 
   // change locale/language at runtime
   updateLocale(locale) {
-    this.locale = locale;
+    if (this.locales.includes(locale)) {
+      this.locale = locale;
+    }
     const lang = locale.substring(0, 2);
     this.translocoService.setActiveLang(lang);
   }
