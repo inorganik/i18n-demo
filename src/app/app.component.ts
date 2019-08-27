@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
@@ -6,7 +6,7 @@ import { TranslocoService } from '@ngneat/transloco';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'i18n demo 🇺🇸🇬🇧🇫🇷';
   currentDate = new Date();
 
@@ -21,7 +21,9 @@ export class AppComponent {
   // the default locale
   locale = this.locales[0].value;
 
-  constructor(private translocoService: TranslocoService) {
+  constructor(private translocoService: TranslocoService) { }
+
+  ngOnInit() {
     this.detectedLocale = this.getUsersLocale('en-US');
 
     // generate a regex from the locales we support
