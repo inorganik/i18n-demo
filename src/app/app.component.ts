@@ -7,40 +7,44 @@ import { TranslocoService } from '@ngneat/transloco';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'i18n demo';
+  title = 'i18n demo 🇺🇸🇬🇧🇫🇷';
   currentDate = new Date();
 
+  // the locales the app supports
+  locales = [
+    { label: '🇺🇸 English (US)', value: 'en-US' },
+    { label: '🇬🇧 English (UK)', value: 'en-GB' },
+    { label: '🇫🇷 Français', value: 'fr' }
+  ];
   // the user's locale
   detectedLocale = '';
-  // the locales the app supports
-  locales = ['en-US', 'en-GB', 'fr'];
-  // the current locale
-  locale = this.locales[0];
+  // the default locale
+  locale = this.locales[0].value;
 
-  constructor(
-    private translocoService: TranslocoService
-  ) {
+  constructor(private translocoService: TranslocoService) {
     this.detectedLocale = this.getUsersLocale('en-US');
 
+    // generate a regex from the locales we support
+    const supportedRegex = new RegExp('^' + this.locales.map(l => l.value.substring(0, 2)).join('|^'));
     // check if the user's preferred language is supported and if so, use it.
-    if (this.detectedLocale.match(/^en|^fr/)) {
+    if (this.detectedLocale.match(supportedRegex)) {
       this.updateLocale(this.detectedLocale);
     }
   }
 
-  getUsersLocale(defaultLang: string): string {
+  getUsersLocale(defaultValue: string): string {
     if (typeof window === 'undefined' || typeof window.navigator === 'undefined') {
-      return defaultLang;
+      return defaultValue;
     }
-    const nav = window.navigator as any;
-    let lang = nav.languages ? nav.languages[0] : null;
-    lang = lang || nav.language || nav.browserLanguage || nav.userLanguage;
+    const wn = window.navigator as any;
+    let lang = wn.languages ? wn.languages[0] : defaultValue;
+    lang = lang || wn.language || wn.browserLanguage || wn.userLanguage;
     return lang;
   }
-
   // change locale/language at runtime
   updateLocale(locale) {
-    if (this.locales.includes(locale)) {
+    console.log('update locale', locale);
+    if (this.locales.some(l => l.value === locale)) {
       this.locale = locale;
     }
     const lang = locale.substring(0, 2);
