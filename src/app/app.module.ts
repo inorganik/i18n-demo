@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { translocoLoader } from './transloco.loader';
 import { TranslocoModule, TRANSLOCO_CONFIG, TranslocoConfig } from '@ngneat/transloco';
+import { PipeDemoComponent } from './pipe-demo/pipe-demo.component';
+import { AppRoutingModule } from './app-routing.module';
 
 // register locales
 registerLocaleData(localeFr, 'fr');
@@ -18,23 +20,27 @@ registerLocaleData(localeGb, 'en-GB');
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PipeDemoComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    TranslocoModule
+    TranslocoModule,
+    AppRoutingModule,
   ],
+  bootstrap: [AppComponent],
   providers: [{
       provide: TRANSLOCO_CONFIG,
       useValue: {
         listenToLangChange: true,
         defaultLang: 'en',
-        prodMode: environment.production
+        fallbackLang: 'en',
+        prodMode: environment.production,
+        scopeStrategy: 'shared'
       } as TranslocoConfig
     },
     translocoLoader
-  ],
-  bootstrap: [AppComponent]
+  ]
 })
 export class AppModule { }
