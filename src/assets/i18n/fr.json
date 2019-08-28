@@ -3,6 +3,7 @@
     "TITLE": "Bonjour Angular !",
     "BROWSER_PREF": "Navigateur préférence: {{ value }}",
     "TODAYS_DATE": "La date d'aujourd'hui",
-    "A_NUMBER": "Un numéro"
+    "A_NUMBER": "Un numéro",
+    "CODE": "Cela a été traduit en code."
   }
 }

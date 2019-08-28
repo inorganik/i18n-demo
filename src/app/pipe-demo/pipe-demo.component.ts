@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocaleService } from '../services/locale.service';
+import { TranslocoService } from '@ngneat/transloco';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pipe-demo',
@@ -7,10 +9,12 @@ import { LocaleService } from '../services/locale.service';
 })
 export class PipeDemoComponent implements OnInit {
   currentDate = new Date();
+  codeTranslated$: Observable<string>;
 
-  constructor(public localeService: LocaleService) { }
+  constructor(public localeService: LocaleService, private transloco: TranslocoService) { }
 
   ngOnInit() {
+    this.codeTranslated$ = this.transloco.selectTranslate('HOME.CODE');
   }
 
 }
