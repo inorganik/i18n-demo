@@ -1,4 +1,6 @@
 {
-  "TITLE": "Paresseux chargé !",
-  "CONTENT": "Voici du contenu chargé paresseux."
+  "PAGE": {
+    "TITLE": "Paresseux chargé !",
+    "CONTENT": "Voici du contenu chargé paresseux."
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocaleService } from '../services/locale.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-pipe-demo',
@@ -14,7 +15,9 @@ export class PipeDemoComponent implements OnInit {
   constructor(public localeService: LocaleService, private transloco: TranslocoService) { }
 
   ngOnInit() {
-    this.codeTranslated$ = this.transloco.selectTranslate('HOME.CODE');
+    this.codeTranslated$ = this.transloco.langChanges$.pipe(
+      switchMap(() => this.transloco.selectTranslate('HOME.CODE'))
+    );
   }
 
 }

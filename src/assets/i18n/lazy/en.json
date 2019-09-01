@@ -1,4 +1,6 @@
 {
-  "TITLE": "Lazy loaded!",
-  "CONTENT": "Here is some lazy loaded content."
+  "PAGE": {
+    "TITLE": "Lazy loaded!",
+    "CONTENT": "Here is some lazy loaded content."
+  }
 }
