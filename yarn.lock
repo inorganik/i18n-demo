@@ -258,9 +258,9 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@ngneat/transloco@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@ngneat/transloco/-/transloco-1.1.1.tgz#6890cba7ef123c02a637954d9cb5ceab51addff2"
+"@ngneat/transloco@^1.6.0":
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@ngneat/transloco/-/transloco-1.8.1.tgz#6ba26fa3e4f1221342106ba84e21687c8720b730"
   dependencies:
     messageformat "^2.3.0"
     ora "^3.4.0"
@@ -3538,8 +3538,8 @@ lodash.tail@^4.1.1:
   resolved "https://registry.yarnpkg.com/lodash.tail/-/lodash.tail-4.1.1.tgz#d2333a36d9e7717c8ad2f7cacafec7c32b444664"
 
 lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.4, lodash@^4.17.5, lodash@~4.17.10:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
 
 log-symbols@^2.2.0:
   version "2.2.0"
