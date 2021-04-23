@@ -10,7 +10,11 @@ export class AppComponent implements OnInit {
 
   constructor(public localeService: LocaleService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.localeService.detectLocale();
+  }
+
+  updateLocale(event: any): void {
+    this.localeService.updateLocale(event.target.value);
   }
 }
