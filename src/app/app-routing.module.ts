@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'lazy-loaded',
-    loadChildren: './+lazy/lazy.module#LazyModule'
+    loadChildren: () => import('./+lazy/lazy.module').then(m => m.LazyModule)
   }
 ];
 

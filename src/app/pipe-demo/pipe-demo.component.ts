@@ -14,7 +14,7 @@ export class PipeDemoComponent implements OnInit {
 
   constructor(public localeService: LocaleService, private transloco: TranslocoService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.codeTranslated$ = this.transloco.langChanges$.pipe(
       switchMap(() => this.transloco.selectTranslate('HOME.CODE'))
     );

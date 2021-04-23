@@ -19,7 +19,7 @@ export class LocaleService {
 
   constructor(private translocoService: TranslocoService) { }
 
-  detectLocale() {
+  detectLocale(): void {
     this.detectedLocale = this.getUsersLocale('en-US');
     // generate a regex from the locales we support
     const supportedRegex = new RegExp('^' + this.locales.map(l => l.value.substring(0, 2)).join('|^'));
@@ -38,9 +38,10 @@ export class LocaleService {
     lang = lang || wn.language || wn.browserLanguage || wn.userLanguage;
     return lang;
   }
+
   // change locale/language at runtime
-  updateLocale(locale) {
-    console.log('update locale', locale);
+  updateLocale(locale: string): void {
+    console.log('update locale:', locale);
     if (this.locales.some(l => l.value === locale)) {
       this.locale = locale;
     }
